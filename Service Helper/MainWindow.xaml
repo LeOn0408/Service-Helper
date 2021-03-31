@@ -5,12 +5,112 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Service_Helper"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Service Helper" Height="450" Width="800" MinWidth="800" MinHeight="449">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="159*"/>
-            <ColumnDefinition Width="641*"/>
-        </Grid.ColumnDefinitions>
+
+
+        <ComboBox x:Name="apparatus"
+                  HorizontalAlignment="Left" 
+                  Margin="20,10,20,0" 
+                  VerticalAlignment="Top" 
+                  Height="20"/>
+        
+        <CheckBox Content="Потертости" 
+                  HorizontalAlignment="Left" 
+                  Height="20"
+                  Margin="20,40,0,0" 
+                  VerticalAlignment="Top"
+                  Unchecked="scuffs_Unchecked"
+                  Checked="scuffs_Checked"/>
+        
+        <CheckBox Content="Царапины" 
+                  HorizontalAlignment="Left" 
+                  Margin="20,60,0,0" 
+                  VerticalAlignment="Top"/>
+        
+        
+
+        <TextBox HorizontalAlignment="Left"
+                 Margin="20,80,0,0" 
+                 Text="Повреждения корпуса:" 
+                 TextWrapping=
+                 "Wrap" VerticalAlignment="Top" 
+                 Width="200" IsEnabled="False" BorderThickness="0,0,1,1"
+                 
+                 />
+        <RadioButton GroupName="DeformationCase" 
+                     Content="Корпус поврежден" 
+                     IsChecked="False" 
+                     Margin="40,100,0,0"
+                     Height="15" 
+                     HorizontalAlignment="Left" 
+                     VerticalAlignment="Top"
+                     />
+
+        <RadioButton GroupName="DeformationCase" 
+                     Content="Корпус не поврежден" 
+                     IsChecked="False" 
+                     Margin="40,120,0,0"
+                     Height="15" 
+                     HorizontalAlignment="Left" 
+                     VerticalAlignment="Top"
+                     />
+
+        <TextBox HorizontalAlignment="Left"
+                 Margin="20,140,0,0" 
+                 Text="Повреждения экрана:" 
+                 TextWrapping=
+                 "Wrap" VerticalAlignment="Top" 
+                 Width="200" IsEnabled="False" BorderThickness="0,0,1,1"
+                 
+                 />
+        <RadioButton GroupName="DeformationScreen" 
+                     Content="Экран поврежден" 
+                     IsChecked="False" 
+                     Margin="40,160,0,0"
+                     Height="15" 
+                     HorizontalAlignment="Left" 
+                     VerticalAlignment="Top"
+                     />
+        <RadioButton GroupName="DeformationScreen" 
+                     Content="Экран не поврежден" 
+                     IsChecked="False" 
+                     Margin="40,180,0,0" 
+                     Height="15" 
+                     HorizontalAlignment="Left" 
+                     VerticalAlignment="Top"
+                     
+                     />
+        <RichTextBox Name="EngineerWarning"
+                     HorizontalAlignment="Left" 
+                     Height="20" 
+                     Margin="20,0,0,60" 
+                     VerticalAlignment="Bottom" Width="740"
+                     FontSize="15" 
+                     Foreground="DarkRed"
+                     IsEnabled="False" IsReadOnly="True" BorderThickness="0,0,0,0" 
+                     SnapsToDevicePixels="True">
+            
+        </RichTextBox>
+        <RichTextBox x:Name="copyPaste" 
+                     Margin="20,0,140,20"
+                     Height="30"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Bottom" 
+                     >
+            <FlowDocument>
+                <Paragraph>
+
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <Button x:Name="copyToClipboard"
+                Content="Копировать" 
+                HorizontalAlignment="Right" 
+                Margin="0,0,40,20" 
+                VerticalAlignment="Bottom" 
+                Height="30" Width="80" IsDefault="True"/>
+
 
     </Grid>
 </Window>
