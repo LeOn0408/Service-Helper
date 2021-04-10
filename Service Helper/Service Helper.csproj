@@ -5,6 +5,14 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <RootNamespace>Service_Helper</RootNamespace>
     <UseWPF>true</UseWPF>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>APASoft.pfx</AssemblyOriginatorKeyFile>
+    <Version>0.0.1</Version>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <FileVersion>1.0.1.0</FileVersion>
+    <PackageProjectUrl>https://github.com/LeOn0408/Service-Helper</PackageProjectUrl>
+    <Authors>Parshukov Alexandr V.</Authors>
+    <NeutralLanguage>ru</NeutralLanguage>
   </PropertyGroup>
 
 </Project>

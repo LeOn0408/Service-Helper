@@ -1,66 +1,94 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
+
 
 namespace Service_Helper
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-        public string scuffs, stringToOneS;
         AparatusList aparatusList = new();
+        CheckList checkList = new();
+        CopyPaste copyPaste = new();
+       
         public MainWindow()
         {
             InitializeComponent();
-            CopyPaste();
-
-            
-
+            createCheckBox();
             copyToClipboard.Click += CopyToClipboard_Click;
-
-            apparatus.ItemsSource = aparatusList.GetList();
+            apparatus.ItemsSource = aparatusList.GetList;
             apparatus.SelectedIndex = 0;
-            
-            
             EngineerWarning.AppendText("Проверьте состояние дисплея и корпуса!!!");
-            
         }
 
         private void CopyToClipboard_Click(object sender, RoutedEventArgs e)
         {
-            string richText = new TextRange(copyPaste.Document.ContentStart, copyPaste.Document.ContentEnd).Text;
+            FillTextBox();
+            string richText = new TextRange(copyPasteString.Document.ContentStart, copyPasteString.Document.ContentEnd).Text;
             Clipboard.SetText(richText);
         }
         
-        private void CopyPaste()
-        {
-            stringToOneS = "Б/У, " + scuffs;
-            copyPaste.Document.Blocks.Clear();
-            copyPaste.AppendText(stringToOneS);
-        }
         
-        private void scuffs_Checked(object sender, RoutedEventArgs e)
+        
+        private void createCheckBox()
         {
-            scuffs = "потертости ";
-            CopyPaste();
+            List<string> list = checkList.GetList;
+            int countCheck = list.Count;
+            for (int i = 0; i< countCheck;i++) 
+            {
+                string content = list[i];
+                CheckBox checkBox = new();
+                checkBox = checkList.GetCheck(content, i);
+                checkBox.Checked += checkBox_Checked;
+                checkBox.Unchecked += checkBox_Unchecked;
+                checkBoxList.Items.Add(checkBox);
+            }
         }
-        private void scuffs_Unchecked(object sender, RoutedEventArgs e)
+    private void checkBox_Checked(object sender, RoutedEventArgs e)
         {
-            scuffs = "";
-            CopyPaste();
+            CheckBox chBox = (CheckBox)sender;
+            int index = Convert.ToInt32(chBox.Tag);
+            copyPaste.setChBox(index, chBox.Content.ToString());
+            FillTextBox();
         }
+        private void checkBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            CheckBox chBox = (CheckBox)sender;
+            int index = Convert.ToInt32(chBox.Tag);
+            copyPaste.delChBox(index);
+            FillTextBox();
+        }
+
+        private void FillTextBox()
+        {
+            Dictionary<int, string> fillTextBox = copyPaste.GetList;
+            string richText="";
+            copyPasteString.Document.Blocks.Clear();
+            foreach (string element in fillTextBox.Values)
+            {
+                richText = richText + ", " + element.ToLower();
+            }
+            // Сломатый трехногий костыль, пока сам код в проработке
+            richText = richText + Damage();
+            //
+            copyPasteString.AppendText("Б/У" + richText);
+        }
+        private string Damage()
+        {
+            string str="";
+            if (@case.IsChecked == true)
+                str = str + ", погнут корпус";
+            if(screen.IsChecked == true)
+                str = str + ", разбит дисплей";
+            if(connector.IsChecked == true)
+                str = str + ", сломан разъем";
+            return str;
+            
+        }
+
     }
+        
 }

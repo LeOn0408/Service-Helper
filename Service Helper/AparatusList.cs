@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+
 
 namespace Service_Helper
 {
@@ -13,6 +10,6 @@ namespace Service_Helper
             "Смартфоны",
             "Телевизоры"
         };
-        public List<string> GetList() => aparatusList;
+        public List<string> GetList => aparatusList;
     }
 }
