@@ -12,8 +12,8 @@ namespace Service_Helper
     {
         AparatusList aparatusList = new();
         CheckList checkList = new();
-        CopyPaste copyPaste = new();
-       
+        Appearance appearance = new();
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -46,34 +46,36 @@ namespace Service_Helper
                 checkBox.Unchecked += checkBox_Unchecked;
                 checkBoxList.Items.Add(checkBox);
             }
+
         }
-    private void checkBox_Checked(object sender, RoutedEventArgs e)
+        private void checkBox_Checked(object sender, RoutedEventArgs e)
         {
             CheckBox chBox = (CheckBox)sender;
             int index = Convert.ToInt32(chBox.Tag);
-            copyPaste.setChBox(index, chBox.Content.ToString());
+            appearance.setChBox(index, chBox.Content.ToString());
             FillTextBox();
         }
         private void checkBox_Unchecked(object sender, RoutedEventArgs e)
         {
             CheckBox chBox = (CheckBox)sender;
             int index = Convert.ToInt32(chBox.Tag);
-            copyPaste.delChBox(index);
+            appearance.delChBox(index);
             FillTextBox();
         }
 
         private void FillTextBox()
         {
-            Dictionary<int, string> fillTextBox = copyPaste.GetList;
+            Dictionary<int, string> appearanceText = appearance.GetList;
             string richText="";
             copyPasteString.Document.Blocks.Clear();
-            foreach (string element in fillTextBox.Values)
+            foreach (string element in appearanceText.Values)
             {
                 richText = richText + ", " + element.ToLower();
             }
             // Сломатый трехногий костыль, пока сам код в проработке
-            richText = richText + Damage();
+            richText = richText + Damage() + ". ";
             //
+            
             copyPasteString.AppendText("Б/У" + richText);
         }
         private string Damage()
@@ -89,6 +91,13 @@ namespace Service_Helper
             
         }
 
+        private void resetApp_Click(object sender, RoutedEventArgs e)
+        {
+            appearance.delAll();
+            checkBoxList.Items.Clear();
+            createCheckBox();
+            FillTextBox();
+        }
     }
         
 }

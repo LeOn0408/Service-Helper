@@ -20,8 +20,8 @@
                  VerticalAlignment="Top" 
                  Width="240"
                  >
-            
-            
+
+
         </ListView>
         <ListView 
                  HorizontalAlignment="Left" 
@@ -87,7 +87,7 @@
 
 
         </ListView>
-        <ListView 
+        <ListView Name="kitBoxList"
                  HorizontalAlignment="Left" 
                  Height="280" Margin="540,40,0,0" 
                  VerticalAlignment="Top" 
@@ -133,7 +133,21 @@
                 Margin="0,0,40,20" 
                 VerticalAlignment="Bottom" 
                 Height="30" Width="80" IsDefault="True"/>
-        
+        <Button Content="СБРОС" 
+                Name="resetApp"                HorizontalAlignment="Left" 
+                Margin="740,11,0,0" 
+                VerticalAlignment="Top" 
+                RenderTransformOrigin="-0.782,0.647" Click="resetApp_Click">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+
 
     </Grid>
 </Window>
