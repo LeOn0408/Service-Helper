@@ -15,4 +15,14 @@
     <NeutralLanguage>ru</NeutralLanguage>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="xml\CheckBoxList.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="xml\CheckBoxList.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
