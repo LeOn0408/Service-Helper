@@ -64,6 +64,7 @@
                      Margin="10,0,0,0"
                      />
             <RadioButton GroupName="DeformationScreen" 
+                         Name ="screenNotDamaged"
                      Content="Экран не поврежден" 
                      IsChecked="False" 
                      Margin="10,0,0,0"
