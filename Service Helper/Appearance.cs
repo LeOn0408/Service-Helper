@@ -5,21 +5,20 @@ namespace Service_Helper
 {
     class Appearance
     {
-        Dictionary<int, string> appearance = new Dictionary<int, string>();
-        public Dictionary<int, string> GetList => appearance;
-
-        public void setChBox(int index, string content)
+        private Dictionary<string,CheckList> appearance = new();
+        
+        public void SetList(string index, string content, string category)
         {
-            appearance[index] = content;
+            appearance[index] = new CheckList() { Content = content, Category = category };
         }
-        public void delChBox(int index)
+        public void DelList(string index) 
         {
-            appearance.Remove(index);
+          appearance.Remove(index);
         }
         public void delAll()
         {
             appearance.Clear();
         }
-
+        public Dictionary<string, CheckList> GetLists => appearance;
     }
 }
