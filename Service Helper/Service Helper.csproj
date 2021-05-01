@@ -7,22 +7,13 @@
     <UseWPF>true</UseWPF>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>APASoft.pfx</AssemblyOriginatorKeyFile>
-    <Version>0.0.1</Version>
+    <Version>0.2.0</Version>
     <AssemblyVersion>1.0.1.0</AssemblyVersion>
     <FileVersion>1.0.1.0</FileVersion>
     <PackageProjectUrl>https://github.com/LeOn0408/Service-Helper</PackageProjectUrl>
     <Authors>Parshukov Alexandr V.</Authors>
     <NeutralLanguage>ru</NeutralLanguage>
+    <DelaySign>false</DelaySign>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="xml\CheckBoxList.xml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="xml\CheckBoxList.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
 
 </Project>

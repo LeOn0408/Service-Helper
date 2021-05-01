@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Service_Helper"
         mc:Ignorable="d"
-        Title="Service Helper" Height="450" Width="800" MinWidth="800" MinHeight="449">
+        Title="Service Helper" Height="460" Width="810" MinWidth="810" MinHeight="460">
     <Grid x:Name="WorkWindow">
 
 
@@ -14,81 +14,19 @@
                   Margin="20,10,20,0" 
                   VerticalAlignment="Top" 
                   Height="20"/>
-        <ListView x:Name="checkBoxList"
+        <ListView x:Name="minorDamageList"
                  HorizontalAlignment="Left" 
                  Height="280" Margin="20,40,0,0" 
                  VerticalAlignment="Top" 
                  Width="240"
-                 >
-
-
-        </ListView>
-        <ListView 
+                 />
+        <ListView x:Name ="damageList"
                  HorizontalAlignment="Left" 
                  Height="280" Margin="280,40,0,0" 
                  VerticalAlignment="Top" 
                  Width="240"
-                 >
-            <TextBox
-                 Text="Повреждения корпуса:" 
-                 TextWrapping=
-                 "Wrap" VerticalAlignment="Top" 
-                 Width="200" 
-                 IsEnabled="False" IsReadOnly="True" 
-                 BorderThickness="0,0,0,0"
                  />
-            <RadioButton GroupName="DeformationCase" 
-                     Name="case"   
-                     Content="Корпус погнут" 
-                     IsChecked="False" 
-                     Margin="10,0,0,0"
-                     />
-
-            <RadioButton GroupName="DeformationCase" 
-                     Content="Корпус не погнут" 
-                     IsChecked="False" 
-                     Margin="10,0,0,0"
-                     />
-
-            <TextBox HorizontalAlignment="Left"
-                 Text="Повреждения экрана:" 
-                 TextWrapping=
-                 "Wrap" VerticalAlignment="Top" Foreground ="Black"
-                 Width="200" IsEnabled="False" BorderThickness="0,0,0,0"
-                 
-                 />
-            <RadioButton GroupName="DeformationScreen" 
-                     Name ="screen"
-                     Content="Экран поврежден" 
-                     IsChecked="False" 
-                     Margin="10,0,0,0"
-                     />
-            <RadioButton GroupName="DeformationScreen" 
-                         Name ="screenNotDamaged"
-                     Content="Экран не поврежден" 
-                     IsChecked="False" 
-                     Margin="10,0,0,0"
-                     />
-            <TextBox HorizontalAlignment="Left"
-                 Text="Повреждения разъема:" 
-                 TextWrapping=
-                 "Wrap" VerticalAlignment="Top" Foreground ="Black"
-                 Width="200" IsEnabled="False" BorderThickness="0,0,0,0"
-                 
-                 />
-            <RadioButton GroupName="DeformationConnector" 
-                     Name ="connector"
-                     Content="Разъем поврежден" 
-                     IsChecked="False" 
-                     Margin="10,0,0,0"/>
-            <RadioButton GroupName="DeformationConnector" 
-                     Content="Разъем не поврежден" 
-                     IsChecked="False" 
-                     Margin="10,0,0,0"/>
-
-
-        </ListView>
-        <ListView Name="kitBoxList"
+        <ListView Name="kitList"
                  HorizontalAlignment="Left" 
                  Height="280" Margin="540,40,0,0" 
                  VerticalAlignment="Top" 
@@ -112,43 +50,29 @@
                      VerticalAlignment="Bottom" Width="740"
                      FontSize="15" 
                      Foreground="DarkRed"
-                     IsEnabled="False" IsReadOnly="True" BorderThickness="0,0,0,0" 
-                     SnapsToDevicePixels="True">
-
-        </RichTextBox>
+                     IsEnabled="False" IsReadOnly="True" 
+                     BorderThickness="0,0,0,0" 
+                     SnapsToDevicePixels="True"
+                     />
         <RichTextBox x:Name="copyPasteString" 
                      Margin="20,0,140,20"
-                     Height="30"
+                     Height="40"
                      HorizontalAlignment="Left"
                      VerticalAlignment="Bottom" 
-                     >
-            <FlowDocument>
-                <Paragraph>
-
-                </Paragraph>
-            </FlowDocument>
-        </RichTextBox>
+                     />
         <Button x:Name="copyToClipboard"
                 Content="Копировать" 
                 HorizontalAlignment="Right" 
                 Margin="0,0,40,20" 
                 VerticalAlignment="Bottom" 
-                Height="30" Width="80" IsDefault="True"/>
+                Height="40" Width="80" IsDefault="True"
+                />
         <Button Content="СБРОС" 
-                Name="resetApp"                HorizontalAlignment="Left" 
+                Name="resetApp"                
+                HorizontalAlignment="Left" 
                 Margin="740,11,0,0" 
                 VerticalAlignment="Top" 
-                RenderTransformOrigin="-0.782,0.647" Click="resetApp_Click">
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Button.RenderTransform>
-        </Button>
-
-
+                RenderTransformOrigin="-0.782,0.647" 
+                Click="resetApp_Click"/>
     </Grid>
 </Window>

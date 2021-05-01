@@ -13,19 +13,17 @@ namespace Service_Helper
         AparatusList aparatusList = new();
         DisplayingLists displayingLists = new();
         Appearance appearance = new();
-        XmlLoad xmlLoad = new();
         public MainWindow()
         {
             InitializeComponent();
-            xmlLoad.xmlLoad();
             createCheckBox();
-            
-
             copyToClipboard.Click += CopyToClipboard_Click;
             apparatus.ItemsSource = aparatusList.GetList;
             apparatus.SelectedIndex = 0;
             EngineerWarning.AppendText("Проверьте состояние дисплея и корпуса!!!");
+
         }
+
 
         private void CopyToClipboard_Click(object sender, RoutedEventArgs e)
         {
@@ -33,45 +31,82 @@ namespace Service_Helper
             string richText = new TextRange(copyPasteString.Document.ContentStart, copyPasteString.Document.ContentEnd).Text;
             Clipboard.SetText(richText);
         }
-        
+
         private void createCheckBox()
         {
             List<CheckList> list = displayingLists.GetCheckLists;
             foreach (CheckList element in list)
             {
+                CheckBox checkBox = new CheckBox
+                {
+                    Name = element.Name,
+                    Content = element.Content,
+                    Tag = element.Category
+                };
+                checkBox.Checked += checkBox_Checked;
+                checkBox.Unchecked += checkBox_Unchecked;
+
                 if (element.Category == "Minor")
+                    minorDamageList.Items.Add(checkBox);
+                if (element.Category == "Kit")
+                    kitList.Items.Add(checkBox);
+            }
+            List<CheckList> nameRadio = list.FindAll(item => item.Category == "NameRadio");
+            foreach (CheckList element in nameRadio)
+            {
+                ListView damage = new ListView { BorderThickness = new Thickness(0) };
+                RichTextBox text = new RichTextBox {
+                    Height = 20, Width = 200,
+                    IsEnabled = false, IsReadOnly = true,
+                    BorderThickness = new Thickness(0),
+                };
+                text.AppendText(element.Content);
+                damage.Items.Add(text);
+                damageList.Items.Add(damage);
+
+                List<CheckList> groupList = list.FindAll(item => item.GroupName == element.Name);
+                foreach (CheckList el in groupList)
                 {
-                    CheckBox checkBox = new CheckBox
+                    RadioButton radio = new RadioButton
                     {
-                        Name = element.Name,
-                        Content = element.Content,
-                        Tag = element.Category
+                        Name = el.Name,
+                        Content = el.Content,
+                        Tag = el.Category,
+                        GroupName = el.GroupName
                     };
-                    checkBox.Checked += checkBox_Checked;
-                    checkBox.Unchecked += checkBox_Unchecked;
-                    checkBoxList.Items.Add(checkBox);
-                }
-                else if (element.Category == "Kit")
-                {
-                    CheckBox checkBox = new CheckBox
-                    {
-                        Name = element.Name,
-                        Content = element.Content,
-                        Tag = element.Category
-                    };
-                    checkBox.Checked += checkBox_Checked;
-                    checkBox.Unchecked += checkBox_Unchecked;
-                    kitBoxList.Items.Add(checkBox);
+                    radio.Checked += Radio_Checked;
+                    radio.Unchecked += Radio_Unchecked;
+                    damage.Items.Add(radio);
                 }
             }
 
+
+
         }
+
+        private void Radio_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RadioButton radio = (RadioButton)sender;
+            string index = radio.Name.ToString();
+            appearance.DelList(index);
+            FillTextBox();
+        }
+
+        private void Radio_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton radio = (RadioButton)sender;
+            string index = radio.Name.ToString();
+            string content = radio.Content.ToString();//формирует нижнюю строку. Будет дальше расширятся и использоваться
+            string category = radio.Tag.ToString();
+            appearance.SetList(index, content, category);
+            FillTextBox();
+        }
+
         private void checkBox_Checked(object sender, RoutedEventArgs e)
         {
             CheckBox chBox = (CheckBox)sender;
             string index = chBox.Name.ToString();
             string content = chBox.Content.ToString();//формирует нижнюю строку. Будет дальше расширятся и использоваться
-            //string category = chBox.Tag.ToString();
             string category = chBox.Tag.ToString();
             appearance.SetList(index, content, category);
             FillTextBox();
@@ -83,7 +118,10 @@ namespace Service_Helper
             appearance.DelList(index);
             FillTextBox();
         }
+        private void MarkTheState()
+        {
 
+        }
         private void FillTextBox()
         {
             Dictionary<string, CheckList> list = appearance.GetLists;
@@ -96,35 +134,24 @@ namespace Service_Helper
                 {
                     minor = minor + ", " + element.Content.ToLower();
                 }
+                if (element.Category == "Damage" && element.Content != String.Empty)
+                {
+                    minor = minor + ", " + element.Content.ToLower();
+                }
                 if (element.Category == "Kit")
                 {
                     kit = kit + ", " + element.Content.ToLower();
                 }
             }
-            copyPasteString.AppendText("Б/У" + minor + Damage()+ kit);
+            copyPasteString.AppendText("Б/У" + minor + kit);
             
         }
-        
-        private string Damage()//костыль. Создать обьект
-        {
-            string str="";
-            if (@case.IsChecked == true)
-                str = str + ", погнут корпус";
-            if(screen.IsChecked == true)
-                str = str + ", разбит дисплей";
-            if (screen.IsChecked == false && screenNotDamaged.IsChecked == false)
-                str = str + ", состояние дисплея неизвестно";
-            if(connector.IsChecked == true)
-                str = str + ", сломан разъем";
-            return str;
-            
-        }
-
         private void resetApp_Click(object sender, RoutedEventArgs e)
         {
             appearance.delAll();
-            checkBoxList.Items.Clear();
-            kitBoxList.Items.Clear();
+            minorDamageList.Items.Clear();
+            kitList.Items.Clear();
+            damageList.Items.Clear();
             createCheckBox();
             FillTextBox();
         }
