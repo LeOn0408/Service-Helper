@@ -7,13 +7,30 @@
     <UseWPF>true</UseWPF>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>APASoft.pfx</AssemblyOriginatorKeyFile>
-    <Version>0.2.0</Version>
+    <Version>0.3.0</Version>
     <AssemblyVersion>1.0.1.0</AssemblyVersion>
     <FileVersion>1.0.1.0</FileVersion>
     <PackageProjectUrl>https://github.com/LeOn0408/Service-Helper</PackageProjectUrl>
     <Authors>Parshukov Alexandr V.</Authors>
     <NeutralLanguage>ru</NeutralLanguage>
     <DelaySign>false</DelaySign>
+    <PackageIcon>icons8-на-компьютере-64.png</PackageIcon>
+    <RepositoryUrl>https://github.com/LeOn0408/Service-Helper</RepositoryUrl>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
 
 </Project>

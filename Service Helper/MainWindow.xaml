@@ -73,6 +73,6 @@
                 Margin="740,11,0,0" 
                 VerticalAlignment="Top" 
                 RenderTransformOrigin="-0.782,0.647" 
-                Click="resetApp_Click"/>
+                Click="ResetApp_Click"/>
     </Grid>
 </Window>

@@ -4,10 +4,10 @@ namespace Service_Helper
 {
     class DisplayingLists
     {
-        public List<CheckList> checkLists { get; set; }
+        public List<CheckList> CheckLists { get; set; }
         public DisplayingLists()
         {
-            checkLists = new List<CheckList>
+            CheckLists = new List<CheckList>
             {
                 //Временно так. 
                 //Первый столбец с незначительными
@@ -38,6 +38,6 @@ namespace Service_Helper
                 new CheckList  { Name = "testkit7", Category = "Kit", Content ="Наушники"},
             };
         }
-        public List<CheckList> GetCheckLists => checkLists;
+        public List<CheckList> GetCheckLists => CheckLists;
     }
 }

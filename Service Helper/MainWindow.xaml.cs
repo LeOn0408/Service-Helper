@@ -16,7 +16,7 @@ namespace Service_Helper
         public MainWindow()
         {
             InitializeComponent();
-            createCheckBox();
+            CreateCheckBox();
             copyToClipboard.Click += CopyToClipboard_Click;
             apparatus.ItemsSource = aparatusList.GetList;
             apparatus.SelectedIndex = 0;
@@ -32,19 +32,19 @@ namespace Service_Helper
             Clipboard.SetText(richText);
         }
 
-        private void createCheckBox()
+        private void CreateCheckBox()
         {
             List<CheckList> list = displayingLists.GetCheckLists;
             foreach (CheckList element in list)
             {
-                CheckBox checkBox = new CheckBox
+                CheckBox checkBox = new ()
                 {
                     Name = element.Name,
                     Content = element.Content,
                     Tag = element.Category
                 };
-                checkBox.Checked += checkBox_Checked;
-                checkBox.Unchecked += checkBox_Unchecked;
+                checkBox.Checked += CheckBox_Checked;
+                checkBox.Unchecked += CheckBox_Unchecked;
 
                 if (element.Category == "Minor")
                     minorDamageList.Items.Add(checkBox);
@@ -54,10 +54,13 @@ namespace Service_Helper
             List<CheckList> nameRadio = list.FindAll(item => item.Category == "NameRadio");
             foreach (CheckList element in nameRadio)
             {
-                ListView damage = new ListView { BorderThickness = new Thickness(0) };
-                RichTextBox text = new RichTextBox {
-                    Height = 20, Width = 200,
-                    IsEnabled = false, IsReadOnly = true,
+                ListView damage = new (){ BorderThickness = new Thickness(0) };
+                RichTextBox text = new ()
+                {
+                    Height = 20,
+                    Width = 200,
+                    IsEnabled = false,
+                    IsReadOnly = true,
                     BorderThickness = new Thickness(0),
                 };
                 text.AppendText(element.Content);
@@ -67,7 +70,7 @@ namespace Service_Helper
                 List<CheckList> groupList = list.FindAll(item => item.GroupName == element.Name);
                 foreach (CheckList el in groupList)
                 {
-                    RadioButton radio = new RadioButton
+                    RadioButton radio = new ()
                     {
                         Name = el.Name,
                         Content = el.Content,
@@ -96,37 +99,29 @@ namespace Service_Helper
         {
             RadioButton radio = (RadioButton)sender;
             string index = radio.Name.ToString();
-            string content = radio.Content.ToString();//формирует нижнюю строку. Будет дальше расширятся и использоваться
-            string category = radio.Tag.ToString();
-            appearance.SetList(index, content, category);
+            appearance.SetList(index);
             FillTextBox();
         }
 
-        private void checkBox_Checked(object sender, RoutedEventArgs e)
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             CheckBox chBox = (CheckBox)sender;
             string index = chBox.Name.ToString();
-            string content = chBox.Content.ToString();//формирует нижнюю строку. Будет дальше расширятся и использоваться
-            string category = chBox.Tag.ToString();
-            appearance.SetList(index, content, category);
+            appearance.SetList(index);
             FillTextBox();
         }
-        private void checkBox_Unchecked(object sender, RoutedEventArgs e)
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             CheckBox chBox = (CheckBox)sender;
             string index = chBox.Name.ToString();
             appearance.DelList(index);
             FillTextBox();
         }
-        private void MarkTheState()
-        {
-
-        }
         private void FillTextBox()
         {
             Dictionary<string, CheckList> list = appearance.GetLists;
             string minor = "";
-            string kit= "";
+            string kit = "";
             copyPasteString.Document.Blocks.Clear();
             foreach (CheckList element in list.Values)
             {
@@ -144,17 +139,17 @@ namespace Service_Helper
                 }
             }
             copyPasteString.AppendText("Б/У" + minor + kit);
-            
+
         }
-        private void resetApp_Click(object sender, RoutedEventArgs e)
+        private void ResetApp_Click(object sender, RoutedEventArgs e)
         {
-            appearance.delAll();
+            appearance.DelAll();
             minorDamageList.Items.Clear();
             kitList.Items.Clear();
             damageList.Items.Clear();
-            createCheckBox();
+            CreateCheckBox();
             FillTextBox();
         }
     }
-        
+
 }
