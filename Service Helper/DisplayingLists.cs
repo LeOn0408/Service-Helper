@@ -35,7 +35,7 @@ namespace Service_Helper
                 new CheckList  { Name = "testkit5", Category = "Kit", Content ="Документы"},
                 new CheckList  { Name = "testkit6", Category = "Kit", Content ="Защитное стекло"},
                 new CheckList  { Name = "testkit7", Category = "Kit", Content ="Ключ слота сим"},
-                new CheckList  { Name = "testkit7", Category = "Kit", Content ="Наушники"},
+                new CheckList  { Name = "testkit8", Category = "Kit", Content ="Наушники"},
             };
         }
         public List<CheckList> GetCheckLists => CheckLists;
