@@ -17,7 +17,7 @@ namespace Service_Helper
                 new CheckList  { Name = "testminor4", Category = "Minor", Content ="Сколы"},
                 new CheckList  { Name = "testminor5", Category = "Minor", Content ="Вмятины",},
                 new CheckList  { Name = "testminor6", Category = "Minor", Content ="Наклеено защитное стекло",},
-                new CheckList  { Name = "testminor6", Category = "Minor", Content ="Следы эксплуатации",},
+                new CheckList  { Name = "testminor7", Category = "Minor", Content ="Следы эксплуатации",},
                 
                 //Второй столбец с серьезными. Name категории NameRadio = GroupName соотвествующей группы
                 new CheckList  { Name = "screen", Category = "NameRadio", Content ="Состояние дисплея"},
