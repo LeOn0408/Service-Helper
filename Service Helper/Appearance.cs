@@ -5,17 +5,16 @@ namespace Service_Helper
 {
     class Appearance
     {
-        private Dictionary<string, CheckList> appearance = new();
-        DisplayingLists displayingLists = new();
-
-        public void SetList(string index)
+        private Dictionary<int, CheckList> appearance = new();
+        Database database = new ();
+        public void SetList(int index)
         {
-            List<CheckList> list = displayingLists.GetCheckLists;
-            CheckList found = list.Find(item => item.Name == index);
+            List<CheckList> list = database.GetCheckLists();
+            CheckList found = list.Find(item => item.ID == index);
             string desc = found.Description ?? found.Content;
             appearance[index] = new CheckList() { Content = desc, Category = found.Category };
         }
-        public void DelList(string index)
+        public void DelList(int index)
         {
             appearance.Remove(index);
         }
@@ -23,6 +22,6 @@ namespace Service_Helper
         {
             appearance.Clear();
         }
-        public Dictionary<string, CheckList> GetLists => appearance;
+        public Dictionary<int, CheckList> GetLists => appearance;
     }
 }

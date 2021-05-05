@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service Helper", "Service Helper\Service Helper.csproj", "{540053D8-2651-46B0-A1D8-9A083FD8C54B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service Helper", "Service Helper\Service Helper.csproj", "{540053D8-2651-46B0-A1D8-9A083FD8C54B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceHelperTest", "ServiceHelperTest\ServiceHelperTest.csproj", "{B669F6A2-A08B-4663-8970-48857F7E0341}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{540053D8-2651-46B0-A1D8-9A083FD8C54B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{540053D8-2651-46B0-A1D8-9A083FD8C54B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{540053D8-2651-46B0-A1D8-9A083FD8C54B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B669F6A2-A08B-4663-8970-48857F7E0341}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B669F6A2-A08B-4663-8970-48857F7E0341}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B669F6A2-A08B-4663-8970-48857F7E0341}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B669F6A2-A08B-4663-8970-48857F7E0341}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
